@@ -68,4 +68,53 @@ public class Data {
             System.out.println(e);
         }
     }
+
+    public static ArrayList<Relationship> getFiles() {
+        String[] pathnames = new File("./src/animals/relationships").list();
+        ArrayList<Relationship> relations = new ArrayList<>();
+        for (int i = 0; i < pathnames.length; i++) {
+            Relationship novy = new Relationship();
+            novy.owner = Integer.parseInt(pathnames[i].split("_owns_")[0]);
+            novy.animal = Integer.parseInt(pathnames[i].split("_owns_")[1]);
+            relations.add(novy);
+        }
+        return relations;
+    }
+
+    public static ArrayList<People> getPeople() {
+        ArrayList<People> peoples = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("people.csv"));
+            String nextLine = br.readLine();
+            while (nextLine != null) {
+                nextLine = br.readLine();
+                if(nextLine != null) {
+                    People osoba = new People();
+                    osoba.id = Integer.parseInt(nextLine.split(";")[0]);
+                    osoba.name = nextLine.split(";")[1].split(" ")[0];
+                    osoba.surname = nextLine.split(";")[1].split(" ")[1];
+                    osoba.age = Integer.parseInt(nextLine.split(";")[2]);
+                    osoba.gender = nextLine.split(";")[3].charAt(0);
+                    peoples.add(osoba);
+                }
+            }
+            br.close();
+        } catch (IOException e){
+            System.out.println(e);
+        }
+        return peoples;
+    }
+
+    public static void ukol2(ArrayList<People> allPeople) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("ukol2.txt"));
+            for (People people : allPeople) {
+                bw.write(people.name+";"+people.surname+";"+people.animalsCount);
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
 }
