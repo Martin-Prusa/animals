@@ -1,7 +1,6 @@
 package com.company;
 
-import java.io.File;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Logic {
     public static void ukol1() {
@@ -62,5 +61,54 @@ public class Logic {
         }
 
         Data.ukol2(allPeople);
+    }
+
+    public static int ukol3() {
+        ArrayList<Relationship> relations = Data.getFiles();
+        //TODO: Opravit
+        return 0;
+    }
+
+    public static void ukol4() {
+        ArrayList<Relationship> relations = Data.getFiles();
+        ArrayList<People> peoples = new ArrayList<>();
+        ArrayList<Animal> animals = Data.getAnimals();
+        ArrayList<Integer> zarazeny = new ArrayList<>();
+        for (Relationship relation : relations) {
+            int index = zarazeny.indexOf(relation.owner);
+            if(index == -1) {
+                People osoba = new People();
+                osoba.id = relation.owner;
+                osoba.avgAnimalAge = animalAge(relation.animal, animals);
+                peoples.add(osoba);
+                zarazeny.add(osoba.id);
+            } else {
+                People osoba = peoples.get(index);
+                osoba.avgAnimalAge = (osoba.avgAnimalAge + animalAge(relation.animal, animals))/2;
+                peoples.set(index, osoba);
+            }
+        }
+        ArrayList<People> allPeople = Data.getPeople();
+
+        for (int i = 0; i < peoples.size(); i++) {
+            int peopleId = peoples.get(i).id;
+            for (int i1 = 0; i1 < allPeople.size(); i1++) {
+                if(peopleId == allPeople.get(i1).id) {
+                    People a = allPeople.get(i1);
+                    a.avgAnimalAge = peoples.get(i).avgAnimalAge;
+                    allPeople.set(i1, a);
+                }
+            }
+        }
+
+        Data.ukol4(allPeople);
+
+    }
+
+    public static int animalAge(int animalID, ArrayList<Animal> animals) {
+        for (int i = 0; i < animals.size(); i++) {
+            if(animals.get(i).id == animalID) return animals.get(i).age;
+        }
+        return -1;
     }
 }

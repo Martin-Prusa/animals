@@ -7,4 +7,5 @@ public class People {
     public int age;
     public char gender;
     public int animalsCount;
+    public double avgAnimalAge;
 }

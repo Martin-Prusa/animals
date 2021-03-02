@@ -117,4 +117,17 @@ public class Data {
             System.out.println(e);
         }
     }
+
+    public static void ukol4(ArrayList<People> allPeople) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("ukol4.txt"));
+            for (People people : allPeople) {
+                bw.write(people.name+" "+people.surname+";"+people.avgAnimalAge);
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
 }
