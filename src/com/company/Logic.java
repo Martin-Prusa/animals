@@ -65,7 +65,7 @@ public class Logic {
 
     public static int ukol3() {
         ArrayList<Relationship> relations = Data.getFiles();
-        //TODO: Opravit
+        System.out.println(relations.size());
         return 0;
     }
 
@@ -110,5 +110,17 @@ public class Logic {
             if(animals.get(i).id == animalID) return animals.get(i).age;
         }
         return -1;
+    }
+
+    public static void ukol5() {
+        ArrayList<Animal> animals = Data.getAnimals();
+        ArrayList<AnimalType> animalTypes = Data.getAnimalType();
+        for (AnimalType animalType : animalTypes) {
+            ArrayList<Animal> zapis = new ArrayList<>();
+            for (Animal animal : animals) {
+                if(animalType.id == animal.type) zapis.add(animal);
+            }
+            Data.typyZvirat(animalType.animal,zapis);
+        }
     }
 }

@@ -6,7 +6,8 @@ public class Main {
 	// write your code here
 //        Logic.ukol1();
 //        Logic.ukol2();
-//        Gui.ukol3();
-        Logic.ukol4();
+        //Gui.ukol3();
+//        Logic.ukol4();
+        Logic.ukol5();
     }
 }

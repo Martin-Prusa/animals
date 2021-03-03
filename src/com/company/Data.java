@@ -130,4 +130,17 @@ public class Data {
             System.out.println(e);
         }
     }
+
+    public static void typyZvirat(String animal, ArrayList<Animal> zapis) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(animal+".txt"));
+            for (Animal animal2 : zapis) {
+                bw.write(animal2.id+"");
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
 }
