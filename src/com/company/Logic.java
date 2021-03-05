@@ -65,8 +65,13 @@ public class Logic {
 
     public static int ukol3() {
         ArrayList<Relationship> relations = Data.getFiles();
-        System.out.println(relations.size());
-        return 0;
+        ArrayList<Integer> zkontrolovane = new ArrayList<>();
+        int count = 0;
+        for (Relationship relation : relations) {
+            if(zkontrolovane.contains(relation.animal)) count++;
+            zkontrolovane.add(relation.animal);
+        }
+        return count;
     }
 
     public static void ukol4() {

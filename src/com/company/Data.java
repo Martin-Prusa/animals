@@ -70,7 +70,7 @@ public class Data {
     }
 
     public static ArrayList<Relationship> getFiles() {
-        String[] pathnames = new File("./src/animals/relationships").list();
+        String[] pathnames = new File("./relationships").list();
         ArrayList<Relationship> relations = new ArrayList<>();
         for (int i = 0; i < pathnames.length; i++) {
             Relationship novy = new Relationship();
